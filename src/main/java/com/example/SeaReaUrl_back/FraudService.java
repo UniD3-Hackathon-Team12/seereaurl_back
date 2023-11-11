@@ -85,10 +85,20 @@ public class FraudService {
         // 응답 객체에 결과를 담아 반환
         return new Top5Response(top5AccountResponses, top5UrlResponses);
     }
-//    @Transactional
-//    public Top5Response getTop5UrlReports(){
-//        return new Top5Response();
-//    }
+    @Transactional
+    public Top5Response getTop5UrlReports(){
+        // 빈 리스트로 초기화된 Top5AccountResponse 리스트 생성
+        List<Top5AccountResponse> top5AccountResponses = new ArrayList<>();
+
+        // FraudUrl 테이블에서 조회
+        List<FraudUrl> top5Urls = fraudUrlRepository.findTop5ByOrderByReportDesc();
+        List<Top5UrlResponse> top5UrlResponses = top5Urls.stream()
+                .map(Top5UrlResponse::new)
+                .collect(Collectors.toList());
+
+        // 응답 객체에 결과를 담아 반환
+        return new Top5Response(top5AccountResponses, top5UrlResponses);
+    }
 //
 //    @Transactional
 //    public StringResponse reportAccount(){

@@ -26,10 +26,10 @@ public class FraudController {
     public Top5Response getTop5AccountReports(){
         return fraudService.getTop5AccountReports();
     }
-//    @GetMapping("/url/report")
-//    public Top5Response getTop5UrlReports(){
-//        return fraudService.getTop5UrlReports();
-//    }
+    @GetMapping("/url/report")
+    public Top5Response getTop5UrlReports(){
+        return fraudService.getTop5UrlReports();
+    }
 //
 //    @PostMapping("/report/account")
 //    public StringResponse reportAccount(){

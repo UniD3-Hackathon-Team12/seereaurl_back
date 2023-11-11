@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface FraudUrlRepository extends JpaRepository<FraudUrl, Long> {
     List<FraudUrl> findTop5ByOrderByViewDesc();
+    List<FraudUrl> findTop5ByOrderByReportDesc();
 }
