@@ -39,10 +39,10 @@ public class FraudController {
 //        return fraudService.reportUrl();
 //    }
 //
-//    @GetMapping("/checkUrl")
-//    public IsFraudUrlResponse checkUrlValidation(@RequestParam String url){
-//        return fraudService.checkUrlValidation(url);
-//    }
+    @GetMapping("/checkUrl")
+    public IsFraudUrlResponse checkUrlValidation(@RequestParam String url){
+        return fraudService.checkUrlValidation(url);
+    }
 //
 //    @GetMapping("/checkAccount")
 //    public IsFraudAccountResponse checkAccountValidation(@RequestParam String accountName){

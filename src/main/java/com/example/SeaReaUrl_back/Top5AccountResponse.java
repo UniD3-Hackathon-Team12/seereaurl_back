@@ -14,7 +14,7 @@ public class Top5AccountResponse {
 
     public Top5AccountResponse(FraudAccount account) {
         this.id = account.getId();
-        this.url = account.getUrl();
+        this.url = account.getAccountName();
         this.isFraud = account.getIsFraud();
         this.view = account.getView();
         this.report = account.getReport();

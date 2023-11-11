@@ -2,11 +2,17 @@ package com.example.SeaReaUrl_back;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -60,11 +66,27 @@ public class FraudService {
 //        return new StringResponse();
 //    }
 //
-//    @Transactional
-//    public IsFraudUrlResponse checkUrlValidation(String url){
-//        List<String> responseList = new ArrayList<>();
-//        return new IsFraudUrlResponse(responseList);
-//    }
+    private RestTemplate restTemplate = new RestTemplate();
+
+    public IsFraudUrlResponse checkUrlValidation(String url){
+        String pythonServerUrl = "http://localhost:5000/fraud";
+
+        Map<String, String> params = new HashMap<>();
+        params.put("url", url);
+
+        HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(params);
+        ResponseEntity<String> responseEntity = restTemplate.exchange(pythonServerUrl, HttpMethod.POST, requestEntity, String.class);
+
+        String result = responseEntity.getBody();
+//        double percentage = Double.parseDouble(result.split("%")[0]);
+
+        IsFraudUrlResponse isFraudUrlResponse = new IsFraudUrlResponse();
+//        isFraudUrlResponse.setPercentage(percentage);
+//        isFraudUrlResponse.setIsSafe(result.contains("safe"));
+        isFraudUrlResponse.setFraudPossibility(result);
+
+        return isFraudUrlResponse;
+    }
 //    @Transactional
 //    public IsFraudAccountResponse checkAccountValidation(String accountName){
 //        return new IsFraudAccountResponse(accountName);
