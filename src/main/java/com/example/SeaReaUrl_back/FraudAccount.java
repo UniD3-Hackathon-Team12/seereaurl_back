@@ -22,4 +22,12 @@ public class FraudAccount {
     private Long view;
 
     private Long report;
+
+    public FraudAccount(String accountName, Boolean isFraud, Long view, Long report) {
+        this.accountName = accountName;
+        this.IsFraud = isFraud;
+        this.view = view;
+        this.report = report;
+
+    }
 }
