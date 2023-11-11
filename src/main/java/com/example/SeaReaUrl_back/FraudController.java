@@ -14,12 +14,8 @@ public class FraudController {
     private final FraudService fraudService;
 
     @GetMapping("/account/view")
-    public List<Top5Response> getTop5AccountView(){
+    public Top5Response getTop5AccountView(){
         return fraudService.getTop5AccountView();
-    }
-    @GetMapping("/hello")
-    public StringResponse test(){
-        return new StringResponse("hello");
     }
 //    @GetMapping("/url/view")
 //    public Top5Response getTop5UrlView(){
@@ -52,7 +48,7 @@ public class FraudController {
 //    public IsFraudAccountResponse checkAccountValidation(@RequestParam String accountName){
 //        return fraudService.checkAccountValidation(accountName);
 //    }
-//
+
 
 
 

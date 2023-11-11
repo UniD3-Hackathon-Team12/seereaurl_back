@@ -13,19 +13,27 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class FraudService {
-
-    private final FraudUrlRepository fraudUrlRepository;
     private final FraudAccountRepository fraudAccountRepository;
+    private final FraudUrlRepository fraudUrlRepository;
 
     @Transactional
-    public List<Top5Response> getTop5AccountView() {
-        List<Top5Response> dtos = new ArrayList<>();
+    public Top5Response getTop5AccountView() {
         List<FraudAccount> top5Accounts = fraudAccountRepository.findTop5ByOrderByViewDesc();
-        for (FraudAccount fraudAccount : top5Accounts){
-            dtos.add(new Top5Response(fraudAccount.getAccountName()));
-        }
-        return dtos;
+        List<Top5AccountResponse> top5AccountResponses = top5Accounts.stream()
+                .map(Top5AccountResponse::new)
+                .collect(Collectors.toList());
+        return new Top5Response(top5AccountResponses);
     }
+
+//    private Top5Response convertToTop5Response(List<FraudAccount> top5Accounts) {
+//        List<Top5Response> responses = top5Accounts.stream()
+//                .map(account -> new Top5Response(account.getId(), account.getUrl(), account.getIsFraud(), account.getView(), account.getReport()))
+//                .collect(Collectors.toList());
+//
+//        // 상위 5개의 계정을 담은 단일 Top5Response를 반환하려면
+//        return new Top5Response(responses);
+//    }
+
 //    @Transactional
 //    public Top5Response getTop5AccountView(){
 //        return new Top5Response();
@@ -51,7 +59,7 @@ public class FraudService {
 //    public StringResponse reportUrl(){
 //        return new StringResponse();
 //    }
-
+//
 //    @Transactional
 //    public IsFraudUrlResponse checkUrlValidation(String url){
 //        List<String> responseList = new ArrayList<>();
