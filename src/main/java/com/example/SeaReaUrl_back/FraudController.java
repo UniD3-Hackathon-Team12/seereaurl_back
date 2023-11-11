@@ -15,12 +15,13 @@ public class FraudController {
 
     @GetMapping("/account/view")
     public Top5Response getTop5AccountView(){
-        return fraudService.getTop5AccountView();
+//        return fraudService.getTop5AccountView();
+        return fraudService.getTop5AccountAndView();
     }
-//    @GetMapping("/url/view")
-//    public Top5Response getTop5UrlView(){
-//        return fraudService.getTop5UrlView();
-//    }
+    @GetMapping("/url/view")
+    public Top5Response getTop5UrlView(){
+        return fraudService.getTop5AccountAndView();
+    }
 //    @GetMapping("/account/report")
 //    public Top5Response getTop5AccountReports(){
 //        return fraudService.getTop5AccountReports();

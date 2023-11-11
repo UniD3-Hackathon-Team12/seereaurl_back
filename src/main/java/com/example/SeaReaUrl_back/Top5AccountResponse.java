@@ -7,14 +7,14 @@ import lombok.Getter;
 @AllArgsConstructor
 public class Top5AccountResponse {
     private Long id;
-    private String url;
+    private String accountName;
     private Boolean isFraud;
     private Long view;
     private Long report;
 
     public Top5AccountResponse(FraudAccount account) {
         this.id = account.getId();
-        this.url = account.getUrl();
+        this.accountName = account.getAccountName();
         this.isFraud = account.getIsFraud();
         this.view = account.getView();
         this.report = account.getReport();

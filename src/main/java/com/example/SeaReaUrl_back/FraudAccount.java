@@ -15,7 +15,7 @@ public class FraudAccount {
     @Column(name = "account_id")
     private Long id;
 
-    private String url;
+    private String accountName;
 
     private Boolean IsFraud;
 

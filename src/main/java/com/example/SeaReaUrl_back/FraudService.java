@@ -16,13 +16,37 @@ public class FraudService {
     private final FraudAccountRepository fraudAccountRepository;
     private final FraudUrlRepository fraudUrlRepository;
 
+//    @Transactional
+//    public Top5Response getTop5AccountView() {
+//        List<FraudAccount> top5Accounts = fraudAccountRepository.findTop5ByOrderByViewDesc();
+//        List<Top5AccountResponse> top5AccountResponses = top5Accounts.stream()
+//                .map(Top5AccountResponse::new)
+//                .collect(Collectors.toList());
+//        return new Top5Response(top5AccountResponses);
+//    }
+//
+//    @Transactional
+//    public Top5Response getTop5UrlView(){
+//        List<FraudUrl> top5Urls = fraudUrlRepository.findTop5ByOrderByViewDesc();
+//        List<Top5UrlResponse> top5UrlResponses = top5Urls.stream()
+//                .map(Top5UrlResponse::new)
+//                .collect(Collectors.toList());
+//        return new Top5Response(top5UrlResponses);
+//    }
+
     @Transactional
-    public Top5Response getTop5AccountView() {
+    public Top5Response getTop5AccountAndView() {
         List<FraudAccount> top5Accounts = fraudAccountRepository.findTop5ByOrderByViewDesc();
         List<Top5AccountResponse> top5AccountResponses = top5Accounts.stream()
                 .map(Top5AccountResponse::new)
                 .collect(Collectors.toList());
-        return new Top5Response(top5AccountResponses);
+
+        List<FraudUrl> top5Urls = fraudUrlRepository.findTop5ByOrderByViewDesc();
+        List<Top5UrlResponse> top5UrlResponses = top5Urls.stream()
+                .map(Top5UrlResponse::new)
+                .collect(Collectors.toList());
+
+        return new Top5Response(top5AccountResponses, top5UrlResponses);
     }
 
 //    private Top5Response convertToTop5Response(List<FraudAccount> top5Accounts) {
@@ -38,10 +62,7 @@ public class FraudService {
 //    public Top5Response getTop5AccountView(){
 //        return new Top5Response();
 //    }
-//    @Transactional
-//    public Top5Response getTop5UrlView(){
-//        return new Top5Response();
-//    }
+
 //    @Transactional
 //    public Top5Response getTop5AccountReports(){
 //        return new Top5Response();
