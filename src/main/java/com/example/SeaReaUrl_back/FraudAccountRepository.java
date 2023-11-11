@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface FraudAccountRepository extends JpaRepository<FraudAccount, Long> {
     List<FraudAccount> findTop5ByOrderByViewDesc();
+    List<FraudAccount> findTop5ByOrderByReportDesc();
 }
