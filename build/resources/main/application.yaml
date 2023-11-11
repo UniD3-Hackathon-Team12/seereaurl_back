@@ -8,8 +8,9 @@ spring:
     username: sa2
     password:
   jpa:
+
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         show_sql: true
@@ -17,6 +18,7 @@ spring:
   output:
     ansi:
       enabled: always
+
 
 # 파라미터 확인을 위한 trace
 logging:
