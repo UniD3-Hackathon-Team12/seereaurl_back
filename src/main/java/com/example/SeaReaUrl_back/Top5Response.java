@@ -14,30 +14,15 @@ import lombok.NoArgsConstructor;
 public class Top5Response {
 
     private List<Top5AccountResponse> top5Accounts;
+    private List<Top5UrlResponse> top5Urls;
 
-    public Top5Response(List<Top5AccountResponse> top5Accounts) {
+    public Top5Response(List<Top5AccountResponse> top5Accounts, List<Top5UrlResponse> top5Urls) {
         this.top5Accounts = top5Accounts;
+        this.top5Urls = top5Urls;
     }
 
-//    private List<FraudAccount> top5Accounts;
-//
-//    public Top5Response(List<FraudAccount> top5Accounts) {
-//        this.top5Accounts = top5Accounts;
-//    }
-//
-//    public List<FraudAccount> getTop5Accounts() {
-//        return top5Accounts;
-//    }
-//    private Long id;
-//    private String url;
-//    private Boolean IsFraud;
-//    private Long view;
-//    private Long report;
-//
-//    public static Top5Response {
-//        return Top5Response.builder()
-//                .id()
-//                .build();
+//    public Top5Response(List<Top5UrlResponse> top5Urls) {
+//        this.top5Urls = top5Urls;
 //    }
 
 }
